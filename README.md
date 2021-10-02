@@ -1,5 +1,18 @@
 # 3-2-hw-weather-dashboard
 
+## Description
+Weather Dashbord which saves previous searches to local storage and shows current and 5 day weather conditions based off https://openweathermap.org/ API. 
+
+## Deployed Application
+https://jasonluxie.github.io/3-2-hw-weather-dashboard/
+
+## Technologies and APIs Used 
+* jQuery
+* Bulma
+* Luxon
+* https://opencagedata.com/
+* https://openweathermap.org/
+
 ## Problem Logic
 1. Creating today's weather card 
     * Empty city name and current weather info containers
