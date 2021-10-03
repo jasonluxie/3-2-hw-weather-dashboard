@@ -72,6 +72,7 @@ function cityData(lat, lon) {
         if (searchCityName.val()) {
             cityName = searchCityName.val();
         } else if ((cityName = searchButtonCity)) searchCityName.val("");
+        console.log(cityName)
         weatherCurrentCity.html(
             cityName +
                 "(" +
