@@ -29,7 +29,7 @@ function showCurrentWeather() {
     if (searchCityName.val() == "") {
         return alert("You have to input a city name");
     }
-    saveSearches(searchCityName.val());
+    
     getCoordinates(searchCityName.val());
 }
 
@@ -51,6 +51,7 @@ function getCoordinates(cityname) {
             //     modal.addClass('is-active')
             return alert("Please enter a valid city name");
         }
+        saveSearches(cityname);
         latitude = response.results[0].geometry.lat;
         longitude = response.results[0].geometry.lng;
         cityData(latitude, longitude);
