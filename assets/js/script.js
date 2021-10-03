@@ -82,14 +82,14 @@ function cityData(lat, lon) {
                 response.current.humidity +
                 " %</li>" +
                 "<li>UV Index: " +
-                '<span id="uv-index">' +
+                '<span class="uv-index px-2">' +
                 response.current.uvi +
                 "</span>" +
                 "</li>"
         );
         let cardWrapper = document.querySelector("#weather-current_wrapper");
         cardWrapper.classList.add("card-wrapper");
-        let uvColor = document.querySelector("#uv-index");
+        let uvColor = document.querySelector(".uv-index");
         if (uvColor.textContent <= 2.5) {
             uvColor.classList.add("green");
         } else if (uvColor.textContent <= 5.5 && uvColor.textContent > 2.5) {

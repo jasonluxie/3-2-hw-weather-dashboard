@@ -17,7 +17,7 @@ https://jasonluxie.github.io/3-2-hw-weather-dashboard/
 
 ![Demonstration of application by search for Houston and Atlanta and generating weather results](./assets/images/demo.gif)
 
-## Problem Logic
+<!-- ## Problem Logic
 1. Creating today's weather card 
     * Empty city name and current weather info containers
     * Set Name (Date) + Icon in city container
@@ -31,4 +31,4 @@ https://jasonluxie.github.io/3-2-hw-weather-dashboard/
     * Condational Length: If container.length >= 8, then remove last (oldest) search term
     * Create New Button with value of search container
     * Prepend to container
-    * Set container to local storage and get container to populate on page load 
+    * Set container to local storage and get container to populate on page load  -->
