@@ -1,10 +1,12 @@
 let searchCityName = $("#search-city_name");
 let searchCityButton = $("#search-city_btn");
 let searchHistory = $("#search-history");
-let weatherCurrent = $("#weather-current");
+// let weatherCurrent = $("#weather-current");
 let weatherCurrentCity = $("#weather-current_city");
 let weatherCurrentInfo = $("#weather-current_info");
-let weatherFuture = $("#weather-future");
+// let weatherFuture = $("#weather-future");
+let weatherFutureTitle = $("#weather-future_header");
+let weatherFutureCards = $("#weather-future_cards");
 let modal = $(".modal");
 let latitude;
 let longitude;
@@ -62,8 +64,9 @@ function cityData(lat, lon) {
     }).then(function (response) {
         console.log(response);
         // console.log(response.current.weather[0].icon)
+        //Weather Current Generation
         let cityName = searchCityName.val();
-        searchCityName.val("")
+        searchCityName.val("");
         weatherCurrentCity.html(
             cityName +
                 "(" +
@@ -74,11 +77,46 @@ function cityData(lat, lon) {
                 "@2x.png>"
         );
         weatherCurrentInfo.html(
-            "<li>Temp: " + response.current.temp + " F</li>" +
-            "<li>Wind: " + response.current.wind_speed +" MPH</li>" +
-            "<li>Humidity: " + response.current.humidity + " %</li>" +
-            "<li id=\"uv-index\">UV Index: " + response.current.uvi + "</li>"
+            "<li>Temp: " +
+                response.current.temp +
+                " F</li>" +
+                "<li>Wind: " +
+                response.current.wind_speed +
+                " MPH</li>" +
+                "<li>Humidity: " +
+                response.current.humidity +
+                " %</li>" +
+                '<li id="uv-index">UV Index: ' +
+                response.current.uvi +
+                "</li>"
         );
+        //5-Day Forcast
+        if (weatherFutureTitle.hasClass("is-hidden")) {
+            weatherFutureTitle.toggleClass("is-hidden");
+        }
+        for (i = 1; i <= 5; i++) {
+            let weatherCard = $(
+                "<div class=weather-card>" +
+                    "<h3>" +
+                    currentDate.plus({ days: i }).toLocaleString() +
+                    "</h3>" +
+                    "<ul>" +
+                    "<img src=http://openweathermap.org/img/wn/" +
+                    response.daily[i].weather[0].icon +
+                    "@2x.png>" +
+                    "<li>Temp: " +
+                    response.daily[i].temp.day +
+                    " F</li>" +
+                    "<li>Wind: " +
+                    response.daily[i].wind_speed +
+                    " MPH</li>" +
+                    "<li>Humidity: " +
+                    response.daily[i].humidity +
+                    " %</li>" +
+                    +"</ul></div>"
+            );
+            weatherFutureCards.append(weatherCard);
+        }
     });
 }
 
