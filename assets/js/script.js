@@ -70,7 +70,7 @@ function cityData(lat, lon) {
         //Weather Current Generation
         let cityName = "";
         if (searchCityName.val()) {
-            cityName = searchCityName;
+            cityName = searchCityName.val();
         } else if ((cityName = searchButtonCity)) searchCityName.val("");
         weatherCurrentCity.html(
             cityName +
