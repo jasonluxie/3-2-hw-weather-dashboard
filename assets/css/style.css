@@ -1,7 +1,11 @@
+body {
+    overflow: hidden;
+}
+
 .card-wrapper {
     border: 1px solid black;
     width: 33%;
-    padding:0.25rem
+    padding: 0.25rem;
 }
 
 #search-city {
@@ -10,25 +14,25 @@
 
 .green {
     background-color: green;
-    color:white;
+    color: white;
 }
 
 .yellow {
     background-color: yellow;
-    color:black
+    color: black;
 }
 
 .orange {
     background-color: orange;
-    color:black
+    color: black;
 }
 
 .red {
     background-color: red;
-    color:white;
+    color: white;
 }
 
 .purple {
     background-color: purple;
-    color:white;
+    color: white;
 }

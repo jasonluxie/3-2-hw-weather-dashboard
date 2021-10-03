@@ -12,16 +12,6 @@ let latitude;
 let longitude;
 const currentDate = luxon.DateTime.now();
 
-//To add time to luxon date, use .plus(argument), by default argument is in milliseconds, but accepts object with specification
-
-//API for opencagedata via cityname
-//https://api.opencagedata.com/geocode/v1/json?q=PLACENAME&key=1103f44dccd54a9da1a21ae0d6e5939d
-// If response.total_results == 0 then text is you must enter a valid location
-
-//API for openweathermap via latitude and logitude
-// https://api.openweathermap.org/data/2.5/onecall?lat=50.98&lon=11.33&exclude=minutely,hourly,alerts&appid=bd3eeed040d34d406331ccfe15a926a1
-// For weather icons: "http://openweathermap.org/img/wn/{icon-code}@2x.png"
-
 searchCityButton.on("click", showCurrentWeather);
 searchHistory.on("click", "button", searchButton);
 
@@ -46,9 +36,7 @@ function getCoordinates(cityname) {
             "&key=1103f44dccd54a9da1a21ae0d6e5939d",
         method: "GET",
     }).then(function (response) {
-        // Modal validation for text name
         if (response.total_results <= 0) {
-            //     modal.addClass('is-active')
             return alert("Please enter a valid city name");
         }
         saveSearches(cityname);
@@ -93,12 +81,14 @@ function cityData(lat, lon) {
                 "<li>Humidity: " +
                 response.current.humidity +
                 " %</li>" +
-                '<li>UV Index: ' +
-                "<span id=\"uv-index\">" + response.current.uvi + "</span>" +
+                "<li>UV Index: " +
+                '<span id="uv-index">' +
+                response.current.uvi +
+                "</span>" +
                 "</li>"
         );
-        let cardWrapper = document.querySelector("#weather-current_wrapper")
-        cardWrapper.classList.add('card-wrapper')
+        let cardWrapper = document.querySelector("#weather-current_wrapper");
+        cardWrapper.classList.add("card-wrapper");
         let uvColor = document.querySelector("#uv-index");
         if (uvColor.textContent <= 2.5) {
             uvColor.classList.add("green");
@@ -108,7 +98,7 @@ function cityData(lat, lon) {
             uvColor.classList.add("orange");
         } else if (uvColor.textContent <= 10.5 && uvColor.textContent > 7.5) {
             uvColor.classList.add("red");
-        } else (uvColor.classList.add("purple"))
+        } else uvColor.classList.add("purple");
         //5-Day Forcast
         if (weatherFutureTitle.hasClass("is-hidden")) {
             weatherFutureTitle.toggleClass("is-hidden");
@@ -160,7 +150,4 @@ function showSearches() {
     }
 }
 
-function colorUV() {}
 showSearches();
-// getCoordinates("Houston");
-// showCurrentWeather();
