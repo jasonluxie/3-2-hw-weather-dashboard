@@ -7,7 +7,7 @@ let weatherCurrentInfo = $("#weather-current_info");
 // let weatherFuture = $("#weather-future");
 let weatherFutureTitle = $("#weather-future_header");
 let weatherFutureCards = $("#weather-future_cards");
-let modal = $(".modal");
+let searchButtonCity = "";
 let latitude;
 let longitude;
 const currentDate = luxon.DateTime.now();
@@ -23,6 +23,7 @@ const currentDate = luxon.DateTime.now();
 // For weather icons: "http://openweathermap.org/img/wn/{icon-code}@2x.png"
 
 searchCityButton.on("click", showCurrentWeather);
+searchHistory.on("click", "button", searchButton);
 
 function showCurrentWeather() {
     if (searchCityName.val() == "") {
@@ -30,7 +31,11 @@ function showCurrentWeather() {
     }
     saveSearches(searchCityName.val());
     getCoordinates(searchCityName.val());
-    searchCityName.val("");
+}
+
+function searchButton(event) {
+    searchButtonCity = $(event.target).text();
+    getCoordinates($(event.target).text());
 }
 
 function getCoordinates(cityname) {
@@ -62,11 +67,11 @@ function cityData(lat, lon) {
             "&units=imperial&exclude=minutely,hourly,alerts&appid=bd3eeed040d34d406331ccfe15a926a1",
         method: "GET",
     }).then(function (response) {
-        // console.log(response);
-        // console.log(response.current.weather[0].icon)
         //Weather Current Generation
-        let cityName = searchCityName.val();
-        searchCityName.val("");
+        let cityName = "";
+        if (searchCityName.val()) {
+            cityName = searchCityName;
+        } else if ((cityName = searchButtonCity)) searchCityName.val("");
         weatherCurrentCity.html(
             cityName +
                 "(" +
@@ -94,9 +99,10 @@ function cityData(lat, lon) {
         if (weatherFutureTitle.hasClass("is-hidden")) {
             weatherFutureTitle.toggleClass("is-hidden");
         }
+        weatherFutureCards.html("");
         for (i = 1; i <= 5; i++) {
             let weatherCard = $(
-                '<div class="weather-card is-one-quarter">' +
+                '<div class="weather-card column">' +
                     "<h3>" +
                     currentDate.plus({ days: i }).toLocaleString() +
                     "</h3>" +
@@ -121,13 +127,28 @@ function cityData(lat, lon) {
 }
 
 function saveSearches(cityname) {
+    if (searchHistory.children().length >= 4) {
+        searchHistory.children().last().remove();
+    }
     let searchHistoryButton = $(
-        "<button class='button is-medium is-full search-button' value=" +
+        // "<button class='button is-primary is-medium column is-full search-button value=" +
+        //     cityname +
+        //     ">"
+        '<button class="button is-primary is-medium column is-full search-button">' +
             cityname +
-            ">"
+            "</button>"
     );
     searchHistory.prepend(searchHistoryButton);
+    localStorage.setItem("searchHistory", searchHistory.html());
 }
 
+function showSearches() {
+    let savedSearch = localStorage.getItem("searchHistory");
+    if (savedSearch) {
+        searchHistory.html(savedSearch);
+    }
+}
+
+showSearches();
 // getCoordinates("Houston");
 // showCurrentWeather();

@@ -28,26 +28,25 @@
                 </div>
             </div>
         </section>
-        <section id="search-city">
-            <h2>Search for a City:</h2>
-            <input type="text" id="search-city_name"/>
-            <input type="button" id="search-city_btn" value="Search" />
+        <section class="columns">
+            <section id="search-city" class="column is-one-quarter">
+                <h2>Search for a City:</h2>
+                <input type="text" id="search-city_name" />
+                <input type="button" id="search-city_btn" value="Search" />
+            </section>
+            <section id="weather-current" class="column is-three-quarters">
+                <h2 id="weather-current_city"></h2>
+                <ul id="weather-current_info"></ul>
+            </section>
         </section>
-        <!-- <section class="modal">
-            <div class="modal-background"></div>
-            <div class="modal-content">
-                <p>Please enter a valid city name</p>
-            </div>
-        </section>
-        <button class="modal-close is-large" aria-label="close"></button> -->
-        <section id="search-history"></section>
-        <section id="weather-current">
-            <h2 id="weather-current_city"></h2>
-            <ul id="weather-current_info"></ul>
-        </section>
-        <section id="weather-future">
-            <h2 id="weather-future_header" class="is-hidden">5 Day Forecast:</h2>
-            <div id="weather-future_cards"></div>
+        <section class="columns">
+            <section id="search-history" class="column is-one-quarter is-flex-direction-column"></section>
+            <section id="weather-future" class="column is-three-quarters">
+                <h2 id="weather-future_header" class="is-hidden">
+                    5 Day Forecast:
+                </h2>
+                <div id="weather-future_cards" class="columns"></div>
+            </section>
         </section>
     </body>
 </html>
