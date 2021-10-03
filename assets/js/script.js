@@ -28,10 +28,10 @@ function showCurrentWeather() {
     if (searchCityName.val() == "") {
         return alert("You have to input a city name");
     }
+    saveSearches(searchCityName.val());
     getCoordinates(searchCityName.val());
+    searchCityName.val("");
 }
-
-function showFutureWeather() {}
 
 function getCoordinates(cityname) {
     $.ajax({
@@ -42,10 +42,10 @@ function getCoordinates(cityname) {
         method: "GET",
     }).then(function (response) {
         // Modal validation for text name
-        // if (response.total_results <= 0) {
-        //     modal.addClass('is-active')
-        // }
-        // console.log(response.total_results)
+        if (response.total_results <= 0) {
+            //     modal.addClass('is-active')
+            return alert("Please enter a valid city name");
+        }
         latitude = response.results[0].geometry.lat;
         longitude = response.results[0].geometry.lng;
         cityData(latitude, longitude);
@@ -62,7 +62,7 @@ function cityData(lat, lon) {
             "&units=imperial&exclude=minutely,hourly,alerts&appid=bd3eeed040d34d406331ccfe15a926a1",
         method: "GET",
     }).then(function (response) {
-        console.log(response);
+        // console.log(response);
         // console.log(response.current.weather[0].icon)
         //Weather Current Generation
         let cityName = searchCityName.val();
@@ -96,7 +96,7 @@ function cityData(lat, lon) {
         }
         for (i = 1; i <= 5; i++) {
             let weatherCard = $(
-                "<div class=weather-card>" +
+                '<div class="weather-card is-one-quarter">' +
                     "<h3>" +
                     currentDate.plus({ days: i }).toLocaleString() +
                     "</h3>" +
@@ -120,7 +120,14 @@ function cityData(lat, lon) {
     });
 }
 
-function saveSearches() {}
+function saveSearches(cityname) {
+    let searchHistoryButton = $(
+        "<button class='button is-medium is-full search-button' value=" +
+            cityname +
+            ">"
+    );
+    searchHistory.prepend(searchHistoryButton);
+}
 
 // getCoordinates("Houston");
 // showCurrentWeather();
