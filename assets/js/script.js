@@ -71,7 +71,8 @@ function cityData(lat, lon) {
         let cityName = "";
         if (searchCityName.val()) {
             cityName = searchCityName.val();
-        } else if ((cityName = searchButtonCity)) searchCityName.val("");
+        } else cityName = searchButtonCity
+        searchCityName.val("");
         console.log(cityName)
         weatherCurrentCity.html(
             cityName +
@@ -147,6 +148,7 @@ function showSearches() {
     }
 }
 
+function colorUV() {}
 showSearches();
 // getCoordinates("Houston");
 // showCurrentWeather();
