@@ -29,7 +29,7 @@ function showCurrentWeather() {
     if (searchCityName.val() == "") {
         return alert("You have to input a city name");
     }
-    
+
     getCoordinates(searchCityName.val());
 }
 
@@ -72,15 +72,14 @@ function cityData(lat, lon) {
         let cityName = "";
         if (searchCityName.val()) {
             cityName = searchCityName.val();
-        } else cityName = searchButtonCity
+        } else cityName = searchButtonCity;
         searchCityName.val("");
-        console.log(cityName)
         weatherCurrentCity.html(
             cityName +
                 "(" +
                 currentDate.toLocaleString() +
                 ")" +
-                "<img class=\"image is-64x64\" src=http://openweathermap.org/img/wn/" +
+                '<img class="image is-64x64" src=http://openweathermap.org/img/wn/' +
                 response.current.weather[0].icon +
                 "@2x.png>"
         );
@@ -94,10 +93,22 @@ function cityData(lat, lon) {
                 "<li>Humidity: " +
                 response.current.humidity +
                 " %</li>" +
-                '<li id="uv-index">UV Index: ' +
-                response.current.uvi +
+                '<li>UV Index: ' +
+                "<span id=\"uv-index\">" + response.current.uvi + "</span>" +
                 "</li>"
         );
+        let cardWrapper = document.querySelector("#weather-current_wrapper")
+        cardWrapper.classList.add('card-wrapper')
+        let uvColor = document.querySelector("#uv-index");
+        if (uvColor.textContent <= 2.5) {
+            uvColor.classList.add("green");
+        } else if (uvColor.textContent <= 5.5 && uvColor.textContent > 2.5) {
+            uvColor.classList.add("yellow");
+        } else if (uvColor.textContent <= 7.5 && uvColor.textContent > 5.5) {
+            uvColor.classList.add("orange");
+        } else if (uvColor.textContent <= 10.5 && uvColor.textContent > 7.5) {
+            uvColor.classList.add("red");
+        } else (uvColor.classList.add("purple"))
         //5-Day Forcast
         if (weatherFutureTitle.hasClass("is-hidden")) {
             weatherFutureTitle.toggleClass("is-hidden");
@@ -105,12 +116,12 @@ function cityData(lat, lon) {
         weatherFutureCards.html("");
         for (i = 1; i <= 5; i++) {
             let weatherCard = $(
-                '<div class="weather-card column">' +
-                    "<h3 class=\"has-text-weight-semibold\">" +
+                '<div class="weather-card column is-narrow mr-3 has-text-info-light has-background-info is-size-5">' +
+                    '<h3 class="has-text-weight-semibold">' +
                     currentDate.plus({ days: i }).toLocaleString() +
                     "</h3>" +
                     "<ul>" +
-                    "<img class=\"image is-64x64\" src=http://openweathermap.org/img/wn/" +
+                    '<img class="image is-64x64" src=http://openweathermap.org/img/wn/' +
                     response.daily[i].weather[0].icon +
                     "@2x.png>" +
                     "<li>Temp: " +
@@ -134,7 +145,7 @@ function saveSearches(cityname) {
         searchHistory.children().last().remove();
     }
     let searchHistoryButton = $(
-        '<button class="button is-light is-medium column is-full search-button">' +
+        '<button class="button is-light is-medium column is-full search-button mb-2">' +
             cityname +
             "</button>"
     );

@@ -29,24 +29,26 @@
                 </div>
             </div>
         </section>
-        <section class="columns">
+        <section class="columns ml-1">
             <section id="search-city" class="column is-one-quarter">
                     <h2 class="column is-full is-size-3 has-text-weight-semibold">Search for a City:</h2>
-                    <input class="column is-full is-size-5" type="text" id="search-city_name" placeholder="City Name" />
+                    <input class="column is-full is-size-5 mb-2" type="text" id="search-city_name" placeholder="City Name" />
                     <input class="column is-full has-text-white has-background-info is-size-5" type="button" id="search-city_btn" value="Search" />
             </section>
             <section id="weather-current" class="column is-three-quarters">
-                <h2 class="is-size-3 has-text-weight-semibold" id="weather-current_city"></h2>
-                <ul id="weather-current_info"></ul>
+                <div id="weather-current_wrapper">
+                    <h2 class="is-size-3 has-text-weight-semibold" id="weather-current_city"></h2>
+                    <ul class="is-size-5 is-3" id="weather-current_info"></ul>
+                </div>
             </section>
         </section>
-        <section class="columns">
+        <section class="columns ml-1">
             <section
                 id="search-history"
                 class="column is-one-quarter is-flex-direction-column"
             ></section>
             <section id="weather-future" class="column is-three-quarters">
-                <h2 id="weather-future_header" class="is-hidden is-size-3">
+                <h2 id="weather-future_header" class="is-hidden is-size-3 mb-3">
                     5 Day Forecast:
                 </h2>
                 <div id="weather-future_cards" class="columns is-4"></div>
