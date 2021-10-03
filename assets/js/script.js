@@ -78,7 +78,7 @@ function cityData(lat, lon) {
                 "(" +
                 currentDate.toLocaleString() +
                 ")" +
-                "<img src=http://openweathermap.org/img/wn/" +
+                "<img class=\"image is-64x64\" src=http://openweathermap.org/img/wn/" +
                 response.current.weather[0].icon +
                 "@2x.png>"
         );
@@ -104,11 +104,11 @@ function cityData(lat, lon) {
         for (i = 1; i <= 5; i++) {
             let weatherCard = $(
                 '<div class="weather-card column">' +
-                    "<h3>" +
+                    "<h3 class=\"has-text-weight-semibold\">" +
                     currentDate.plus({ days: i }).toLocaleString() +
                     "</h3>" +
                     "<ul>" +
-                    "<img src=http://openweathermap.org/img/wn/" +
+                    "<img class=\"image is-64x64\" src=http://openweathermap.org/img/wn/" +
                     response.daily[i].weather[0].icon +
                     "@2x.png>" +
                     "<li>Temp: " +
@@ -128,14 +128,11 @@ function cityData(lat, lon) {
 }
 
 function saveSearches(cityname) {
-    if (searchHistory.children().length >= 4) {
+    if (searchHistory.children().length >= 8) {
         searchHistory.children().last().remove();
     }
     let searchHistoryButton = $(
-        // "<button class='button is-primary is-medium column is-full search-button value=" +
-        //     cityname +
-        //     ">"
-        '<button class="button is-primary is-medium column is-full search-button">' +
+        '<button class="button is-light is-medium column is-full search-button">' +
             cityname +
             "</button>"
     );
