@@ -13,6 +13,10 @@ https://jasonluxie.github.io/3-2-hw-weather-dashboard/
 * https://opencagedata.com/
 * https://openweathermap.org/
 
+## Demonstration 
+
+![Demonstration of application by search for Houston and Atlanta and generating weather results](./assets/images/demo.gif)
+
 ## Problem Logic
 1. Creating today's weather card 
     * Empty city name and current weather info containers
