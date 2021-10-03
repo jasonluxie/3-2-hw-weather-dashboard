@@ -36,3 +36,9 @@ body {
     background-color: purple;
     color: white;
 }
+
+@media screen and (max-width:800px) {
+    .card-wrapper {
+        width:100%
+    }
+}
