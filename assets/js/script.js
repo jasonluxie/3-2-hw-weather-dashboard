@@ -106,7 +106,7 @@ function cityData(lat, lon) {
         weatherFutureCards.html("");
         for (i = 1; i <= 5; i++) {
             let weatherCard = $(
-                '<div class="weather-card column is-narrow mr-3 has-text-info-light has-background-info is-size-5">' +
+                '<div class="weather-card column is-narrow mr-3 has-text-info-light has-background-info is-size-5 pb-2">' +
                     '<h3 class="has-text-weight-semibold">' +
                     currentDate.plus({ days: i }).toLocaleString() +
                     "</h3>" +
